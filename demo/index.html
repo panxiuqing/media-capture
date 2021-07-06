@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Media Capture Demo</title>
+  </head>
+  <body>
+    <video id="preview"></video>
+    <script type="module">
+      import { captureVideo } from '../dist/media-capture.esm.js';
+      captureVideo({
+        width: 320,
+        height: 240,
+        onComplete(blob) {
+          console.log(blob);
+        },
+        seconds: 5,
+        previewElement: document.querySelector('#preview'),
+        instructions: [
+          { startSeconds: 1, text: '抬头' },
+          { startSeconds: 3, text: '张嘴' },
+        ],
+      });
+    </script>
+  </body>
+</html>
