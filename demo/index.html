@@ -8,13 +8,17 @@
   </head>
   <body>
     <video id="preview"></video>
+    <video style="display: none;" id="record" controls></video>
     <script type="module">
       import { captureVideo } from '../dist/media-capture.esm.js';
       captureVideo({
         width: 320,
         height: 240,
         onComplete(blob) {
-          console.log(blob);
+          const recordUrl = URL.createObjectURL(blob);
+          const el = document.querySelector('#record');
+          el.src = recordUrl;
+          el.style.display = 'block';
         },
         seconds: 5,
         previewElement: document.querySelector('#preview'),
